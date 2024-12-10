@@ -15,7 +15,7 @@ import java.util.Date;
 public class base {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    long id;
-    boolean is_completed;
-    Date created_at;
+    private long id;
+    private boolean is_completed;
+    private Date created_at;
 }

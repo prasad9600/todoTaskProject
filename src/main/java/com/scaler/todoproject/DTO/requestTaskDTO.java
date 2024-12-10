@@ -9,9 +9,9 @@ import java.util.Date;
 @Setter
 public class requestTaskDTO {
 
-    String title;
-    String description;
-    boolean is_completed;
-    Date created_at;
+    private String title;
+    private String description;
+    private boolean is_completed;
+    private Date created_at;
 
 }

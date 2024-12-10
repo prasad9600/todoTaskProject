@@ -1,21 +1,17 @@
 package com.scaler.todoproject.model;
 
 import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.util.Date;
 
 @Getter
 @Setter
 @Entity
 public class task extends base {
 
-    String title;
-    String description;
+    private String title;
+    private String description;
 
 
 
