@@ -18,11 +18,12 @@ public class toDo {
     public todoService todoservice;
 
     public toDo(todoService todoservice){
+
         this.todoservice=todoservice;
     }
 
 
-    @PostMapping("/tasks")
+    @PostMapping("/task")
     public ResponseEntity<task> addTask(@RequestBody requestTaskDTO requesttaskdto){
         task Task = todoservice.addServiceTask(
                 requesttaskdto.getTitle(),
@@ -61,5 +62,14 @@ public class toDo {
         }
     }
 
+    @DeleteMapping("/task/{id}")
+    public ResponseEntity<String> deleteItem(@PathVariable("id") long id){
+        try{
+            todoservice.deleteItemById(id);
+            return ResponseEntity.ok("Item with Id " + id + " deleted successfully");
+        }catch(ItemNotFoundException e){
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
+        }
 
+    }
 }

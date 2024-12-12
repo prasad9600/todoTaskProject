@@ -1,5 +1,7 @@
 package com.scaler.todoproject.model;
 
+
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import lombok.Getter;
 import lombok.Setter;
@@ -9,7 +11,7 @@ import lombok.Setter;
 @Setter
 @Entity
 public class task extends base {
-
+    @Column(name="task_title",nullable=false,unique=true)
     private String title;
     private String description;
 

@@ -17,6 +17,7 @@ public class todoService {
     public taskRepo taskrepo;
 
     public todoService(taskRepo taskrepo){
+
         this.taskrepo = taskrepo;
     }
 
@@ -31,6 +32,7 @@ public class todoService {
     }
 
     public Optional<task> getTask(long id){
+
         return taskrepo.findById(id);
     }
 
@@ -45,9 +47,17 @@ public class todoService {
             existingTask.setDescription(requesttaskdto.getDescription());
             existingTask.setIs_completed(requesttaskdto.isIs_completed());
             existingTask.setCreated_at(requesttaskdto.getCreated_at());
-                    // create a new
+                    // create a new with same ID
             return taskrepo.save(existingTask);
         })
             .orElseThrow(() -> new ItemNotFoundException("Item with ID " + id + " not found"));
+    }
+
+    public void deleteItemById(long id) throws ItemNotFoundException{
+        if(taskrepo.existsById(id)){
+            taskrepo.deleteById(id);
+        }else{
+            throw new ItemNotFoundException("Item with Id " + id + " not found");
+        }
     }
 }
