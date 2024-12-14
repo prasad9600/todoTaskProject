@@ -1,9 +1,12 @@
 package com.scaler.todoproject.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
+
+
 import lombok.Getter;
 import lombok.Setter;
-import org.antlr.v4.runtime.misc.NotNull;
+
 
 import java.util.Date;
 
@@ -12,10 +15,11 @@ import java.util.Date;
 @MappedSuperclass
 public class base {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private long id;
-    @NotNull
+
     private boolean is_completed;
+
     private Date created_at;
 
     // Getter for id
@@ -39,6 +43,7 @@ public class base {
     }
 
     // Getter for created_at
+//    @JsonFormat(shape = JsonFormat.Shape.STRING,pattern = "yyyy-MM-dd")
     public Date getCreated_at() {
         return created_at;
     }

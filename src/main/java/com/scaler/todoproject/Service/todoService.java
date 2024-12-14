@@ -6,6 +6,7 @@ import com.scaler.todoproject.Exception.ItemNotFoundException;
 import com.scaler.todoproject.Repository.taskRepo;
 import com.scaler.todoproject.model.task;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Date;
 import java.util.List;
@@ -52,12 +53,13 @@ public class todoService {
         })
             .orElseThrow(() -> new ItemNotFoundException("Item with ID " + id + " not found"));
     }
-
-    public void deleteItemById(long id) throws ItemNotFoundException{
-        if(taskrepo.existsById(id)){
-            taskrepo.deleteById(id);
+    @Transactional
+    public void deleteItemByTitle(String title) throws ItemNotFoundException{
+        if(taskrepo.existsByTitle(title)){
+            taskrepo.deleteByTitle(title);
         }else{
-            throw new ItemNotFoundException("Item with Id " + id + " not found");
+            throw new ItemNotFoundException("Item with title " + title + " not found");
         }
+
     }
 }

@@ -11,7 +11,7 @@ import lombok.Setter;
 @Setter
 @Entity
 public class task extends base {
-    @Column(name="task_title",nullable=false,unique=true)
+    @Column(nullable=false,unique=true)
     private String title;
     private String description;
 

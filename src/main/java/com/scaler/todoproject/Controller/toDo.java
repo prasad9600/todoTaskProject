@@ -32,9 +32,9 @@ public class toDo {
                 requesttaskdto.getCreated_at());
 
         ResponseEntity<task> responseEntity;
-        responseEntity = new ResponseEntity<>(Task, HttpStatusCode.valueOf(201));
+        return responseEntity = new ResponseEntity<>(Task, HttpStatusCode.valueOf(201));
 
-        return responseEntity;
+//        return ResponseEntity.status(HttpStatus.CREATED).body(Task);
     }
     @GetMapping("/task/{id}")
     public ResponseEntity<?> taskId(@PathVariable("id") long id ){
@@ -51,6 +51,7 @@ public class toDo {
     public List<task> getAllTask(){
         return todoservice.getTasks();
     }
+
     @PutMapping("/task/{id}")
     public ResponseEntity<?> updateItem(@PathVariable("id") long id,@RequestBody requestTaskDTO requesttaskdto){
         try{
@@ -62,11 +63,11 @@ public class toDo {
         }
     }
 
-    @DeleteMapping("/task/{id}")
-    public ResponseEntity<String> deleteItem(@PathVariable("id") long id){
+    @DeleteMapping("/task")
+    public ResponseEntity<String> deleteItem(@RequestParam String title){
         try{
-            todoservice.deleteItemById(id);
-            return ResponseEntity.ok("Item with Id " + id + " deleted successfully");
+            todoservice.deleteItemByTitle(title);
+            return ResponseEntity.ok("Item with title " + title + " deleted successfully");
         }catch(ItemNotFoundException e){
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
         }

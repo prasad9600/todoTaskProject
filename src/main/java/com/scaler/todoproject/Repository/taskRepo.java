@@ -20,9 +20,14 @@ public interface taskRepo extends JpaRepository<task,Long> {
         public List<task> findAll();
 
 
-        public boolean existsById(long id);
+       // public boolean existsById(String title);
+      // @Query("SELECT COUNT(t) > 0 FROM task t WHERE t.title = :title")
+        //@Param("title")
+        public boolean existsByTitle(String title);
 
 
-        public void deleteById(long id);
+       // public void deleteById(String title);
+
+        public void deleteByTitle(String title);
 
 }
