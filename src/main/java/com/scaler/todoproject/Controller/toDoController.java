@@ -13,11 +13,11 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-public class toDo {
+public class toDoController {
 
     public todoService todoservice;
 
-    public toDo(todoService todoservice){
+    public toDoController(todoService todoservice){
 
         this.todoservice=todoservice;
     }
@@ -36,6 +36,7 @@ public class toDo {
 
 //        return ResponseEntity.status(HttpStatus.CREATED).body(Task);
     }
+
     @GetMapping("/task/{id}")
     public ResponseEntity<?> taskId(@PathVariable("id") long id ){
         Optional<task> Task=todoservice.getTask(id);
