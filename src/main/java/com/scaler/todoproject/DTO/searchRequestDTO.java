@@ -10,6 +10,8 @@ public class searchRequestDTO {
     private int pageNumber;
     private int size;
 
+
+
     public String getQuery() {
         return query;
     }

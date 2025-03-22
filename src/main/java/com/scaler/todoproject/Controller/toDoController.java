@@ -49,8 +49,10 @@ public class toDoController {
         }
     }
     @GetMapping("/task")
-    public List<task> getAllTask(){
-        return todoservice.getTasks();
+    public ResponseEntity<List<task>> getAllTask(){
+        List<task> responseList= todoservice.getTasks();
+        ResponseEntity<List<task>> responseEntity = new ResponseEntity<>(responseList, HttpStatus.valueOf(200));
+        return responseEntity;
     }
 
     @PutMapping("/task/{id}")
