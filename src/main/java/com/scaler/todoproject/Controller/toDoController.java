@@ -56,9 +56,9 @@ public class toDoController {
     }
 
     @PutMapping("/task/{id}")
-    public ResponseEntity<?> updateItem(@PathVariable("id") long id,@RequestBody requestTaskDTO requesttaskdto){
+    public ResponseEntity<?> updateTask(@PathVariable("id") long id,@RequestBody requestTaskDTO requesttaskdto){
         try{
-            task Task = todoservice.updateItem(id,requesttaskdto);
+            task Task = todoservice.updateTask(id,requesttaskdto);
             return ResponseEntity.ok(Task);
 
         }catch(ItemNotFoundException e){
@@ -67,9 +67,9 @@ public class toDoController {
     }
 
     @DeleteMapping("/task")
-    public ResponseEntity<String> deleteItem(@RequestParam String title){
+    public ResponseEntity<String> deleteTask(@RequestParam String title){
         try{
-            todoservice.deleteItemByTitle(title);
+            todoservice.deleteTaskByTitle(title);
             return ResponseEntity.ok("Item with title " + title + " deleted successfully");
         }catch(ItemNotFoundException e){
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());

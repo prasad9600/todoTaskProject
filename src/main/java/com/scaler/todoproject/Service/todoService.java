@@ -41,7 +41,7 @@ public class todoService {
         return taskrepo.findAll();
     }
 
-    public task updateItem(Long id, requestTaskDTO requesttaskdto){
+    public task updateTask(Long id, requestTaskDTO requesttaskdto){
         // Update the existing
         return taskrepo.findById(id).map(existingTask ->{
             existingTask.setTitle(requesttaskdto.getTitle());
@@ -54,7 +54,7 @@ public class todoService {
             .orElseThrow(() -> new ItemNotFoundException("Item with ID " + id + " not found"));
     }
     @Transactional
-    public void deleteItemByTitle(String title) throws ItemNotFoundException{
+    public void deleteTaskByTitle(String title) throws ItemNotFoundException{
         if(taskrepo.existsByTitle(title)){
             taskrepo.deleteByTitle(title);
         }else{
